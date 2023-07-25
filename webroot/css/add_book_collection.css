@@ -1,0 +1,63 @@
+.each_video_upload_container .video_player_container video,
+.each_video_upload_container .image_container canvas{
+    max-width: 100%;
+}
+.ui-accordion-link{
+    display: none !important;
+}
+.ui-accordion-content.ui-widget-content{
+    border: 0 none;
+}
+.validation_error{
+    color: #c60;
+    font-size: .8em;
+    font-style: italic;
+}
+#image_container,
+#video_container,
+#final_image_space{
+    margin-bottom: 10px;
+}
+#image_container .row,
+#final_image_space .row{
+    justify-content: center;
+}
+.each_video{
+    border: 1px solid #777777;
+    display: flex;
+    align-items: center;
+}
+.each_video video {
+    width: 100%;
+    max-width: 100%;
+    max-height: 350px;
+}
+.each_image{
+    text-align: center;
+    border: 1px solid #777777;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+}
+.each_image img{
+    max-width: 100%;
+    max-height:100%;
+}
+.each_image.active,
+.each_image:hover{
+    border-width: 2px;
+    border-color: #003eff;
+}
+#final_image_space .each_image.active,
+#final_image_space .each_image:hover
+{
+    border-width: 1px;
+    border-color: #777777;
+}
+.each_file:not(.active),
+.each_video:not(.active)
+{
+    display: none;
+}
