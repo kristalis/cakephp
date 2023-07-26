@@ -9,7 +9,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Books Model
+ * Clips Model
  *
  * @method \App\Model\Entity\Book newEmptyEntity()
  * @method \App\Model\Entity\Book newEntity(array $data, array $options = [])
@@ -25,7 +25,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Book[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Book[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
-class BooksTable extends Table
+class ClipsTable extends Table
 {
     /**
      * Initialize method
@@ -37,12 +37,12 @@ class BooksTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('books');
+        $this->setTable('clips');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        $this->hasMany('BookImages', [
-            'foreignKey' => 'book_id',
+        $this->hasMany('ClipImages', [
+            'foreignKey' => 'clip_id',
         ]);
 
         $this->addBehavior('Timestamp', [

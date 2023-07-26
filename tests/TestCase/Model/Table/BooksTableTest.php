@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\BooksTable;
+use App\Model\Table\ClipsTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\BooksTable Test Case
+ * App\Model\Table\ClipsTable Test Case
  */
-class BooksTableTest extends TestCase
+class ClipsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\BooksTable
+     * @var \App\Model\Table\ClipsTable
      */
-    protected $Books;
+    protected $Clips;
 
     /**
      * Fixtures
@@ -24,7 +24,7 @@ class BooksTableTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.Books',
+        'app.Clips',
     ];
 
     /**
@@ -35,8 +35,8 @@ class BooksTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Books') ? [] : ['className' => BooksTable::class];
-        $this->Books = $this->getTableLocator()->get('Books', $config);
+        $config = $this->getTableLocator()->exists('Clips') ? [] : ['className' => ClipsTable::class];
+        $this->Clips = $this->getTableLocator()->get('Clips', $config);
     }
 
     /**
@@ -46,7 +46,7 @@ class BooksTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->Books);
+        unset($this->Clips);
 
         parent::tearDown();
     }
@@ -55,7 +55,7 @@ class BooksTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\BooksTable::validationDefault()
+     * @uses \App\Model\Table\ClipsTable::validationDefault()
      */
     public function testValidationDefault(): void
     {

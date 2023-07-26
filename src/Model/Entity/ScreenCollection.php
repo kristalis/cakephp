@@ -6,17 +6,17 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * LibCollection Entity
+ * ScreenCollection Entity
  *
  * @property int $id
  * @property string $name
- * @property int $lib_count
+ * @property int $screen_count
  * @property \Cake\I18n\FrozenTime $created_at
  * @property \Cake\I18n\FrozenTime|null $updated_at
  *
- * @property \App\Model\Entity\BookCollection[] $book_collections
+ * @property \App\Model\Entity\ClipCollection[] $clip_collections
  */
-class LibCollection extends Entity
+class ScreenCollection extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -29,14 +29,14 @@ class LibCollection extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'lib_count' => true,
+        'screen_count' => true,
         'created_at' => false,
         'updated_at' => false,
-        'book_collections' => true,
+        'clip_collections' => true,
     ];
 
     protected function _getLabel()
     {
-        return isset($this->_fields['name']) && isset($this->_fields['lib_count']) ? $this->_fields['name'] . ' ' . $this->_fields['lib_count'] : '';
+        return isset($this->_fields['name']) && isset($this->_fields['screen_count']) ? $this->_fields['name'] . ' ' . $this->_fields['screen_count'] : '';
     }
 }

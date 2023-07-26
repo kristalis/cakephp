@@ -6,9 +6,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * BooksFixture
+ * ClipsFixture
  */
-class BooksFixture extends TestFixture
+class ClipsFixture extends TestFixture
 {
     /**
      * Init method

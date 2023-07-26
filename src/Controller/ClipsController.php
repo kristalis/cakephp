@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace App\Controller;
 
 /**
- * Books Controller
+ * Clips Controller
  *
- * @property \App\Model\Table\BooksTable $Books
+ * @property \App\Model\Table\ClipsTable $Clips
  * @method \App\Model\Entity\Book[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class BooksController extends AppController
+class ClipsController extends AppController
 {
     public function beforeRender(\Cake\Event\EventInterface $event)
     {
@@ -23,9 +23,9 @@ class BooksController extends AppController
      */
     public function index()
     {
-        $books = $this->paginate($this->Books);
+        $clips = $this->paginate($this->Clips);
 
-        $this->set(compact('books'));
+        $this->set(compact('clips'));
     }
 
     /**
@@ -37,11 +37,11 @@ class BooksController extends AppController
      */
     public function view($id = null)
     {
-        $book = $this->Books->get($id, [
-            'contain' => ['BookImages'],
+        $clip = $this->Clips->get($id, [
+            'contain' => ['ClipImages'],
         ]);
 
-        $this->set(compact('book'));
+        $this->set(compact('clip'));
     }
 
     /**
@@ -51,15 +51,15 @@ class BooksController extends AppController
      */
     public function add()
     {
-        $book = $this->Books->newEmptyEntity();
+        $clip = $this->Clips->newEmptyEntity();
         if ($this->request->is('post')) {
-            $book = $this->Books->patchEntity($book, $this->request->getData());
-            if ($this->Books->save($book)) {
-                $book_image = $this->fetchTable('BookImages')->newEmptyEntity();
+            $clip = $this->Clips->patchEntity($clip, $this->request->getData());
+            if ($this->Clips->save($clip)) {
+                $clip_image = $this->fetchTable('ClipImages')->newEmptyEntity();
                 $book_image_data = [
-                    'book_id' => $book->id,
+                    'clip_id' => $clip->id,
                 ];
-                $postImage = $this->request->getData('book_image');
+                $postImage = $this->request->getData('clip_image');
                 $name = $postImage->getClientFilename();
                 $type = $postImage->getClientMediaType();
                 $targetPath = WWW_ROOT. 'uploads'. DS;
@@ -69,8 +69,8 @@ class BooksController extends AppController
                         if ($postImage->getSize() > 0 && $postImage->getError() == 0) {
                             $postImage->moveTo($targetPath.$name);
                             $book_image_data['filename'] = $name;
-                            $book_image = $this->fetchTable('BookImages')->patchEntity($book_image, $book_image_data);
-                            if($this->fetchTable('BookImages')->save($book_image)){
+                            $clip_image = $this->fetchTable('ClipImages')->patchEntity($clip_image, $book_image_data);
+                            if($this->fetchTable('ClipImages')->save($clip_image)){
                                 $this->Flash->success(__('Book image uploaded'));
                             }
                             else{
@@ -89,13 +89,13 @@ class BooksController extends AppController
                     $this->Flash->error(__('Book image has to be JPEG, PNG type.'));
                 }
 
-                $this->Flash->success(__('The book has been saved.'));
+                $this->Flash->success(__('The clip has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The book could not be saved. Please, try again.'));
+            $this->Flash->error(__('The clip could not be saved. Please, try again.'));
         }
-        $this->set(compact('book'));
+        $this->set(compact('clip'));
     }
 
     /**
@@ -107,21 +107,21 @@ class BooksController extends AppController
      */
     public function edit($id = null)
     {
-        $book = $this->Books->get($id, [
-            'contain' => ['BookImages'],
+        $clip = $this->Clips->get($id, [
+            'contain' => ['ClipImages'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $book = $this->Books->patchEntity($book, $this->request->getData());
-            if ($this->Books->save($book)) {
+            $clip = $this->Clips->patchEntity($clip, $this->request->getData());
+            if ($this->Clips->save($clip)) {
                 $previous_image = null;
-                $book_image = $book->book_images ? $book->book_images[0] : $this->fetchTable('BookImages')->newEmptyEntity();
-                if($book->book_images){
-                    $previous_image = $book_image->filename;
+                $clip_image = $clip->clip_images ? $clip->clip_images[0] : $this->fetchTable('ClipImages')->newEmptyEntity();
+                if($clip->clip_images){
+                    $previous_image = $clip_image->filename;
                 }
                 $book_image_data = [
-                    'book_id' => $book->id,
+                    'clip_id' => $clip->id,
                 ];
-                $postImage = $this->request->getData('book_image');
+                $postImage = $this->request->getData('clip_image');
                 $name = $postImage->getClientFilename();
                 $pathInfo = pathinfo($name);
                 $newFilename = $pathInfo['filename'].time().'.'.$pathInfo['extension'];
@@ -133,8 +133,8 @@ class BooksController extends AppController
                         if($type == 'image/jpeg' || $type == 'image/jpg' || $type == 'image/png'){
                             $postImage->moveTo($targetPath.$newFilename);
                             $book_image_data['filename'] = $newFilename;
-                            $book_image = $this->fetchTable('BookImages')->patchEntity($book_image, $book_image_data);
-                            if($this->fetchTable('BookImages')->save($book_image)){
+                            $clip_image = $this->fetchTable('ClipImages')->patchEntity($clip_image, $book_image_data);
+                            if($this->fetchTable('ClipImages')->save($clip_image)){
                                 if($previous_image) @unlink(WWW_ROOT.'uploads'.DS.$previous_image);
                                 $this->Flash->success(__('Book image uploaded'));
                             }
@@ -147,17 +147,17 @@ class BooksController extends AppController
                         }
                     }
                     else{
-                        $this->Flash->error(__('Error in book image upload'));
+                        $this->Flash->error(__('Error in clip image upload'));
                     }
                 }
 
-                $this->Flash->success(__('The book has been saved.'));
+                $this->Flash->success(__('The clip has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The book could not be saved. Please, try again.'));
+            $this->Flash->error(__('The clip could not be saved. Please, try again.'));
         }
-        $this->set(compact('book'));
+        $this->set(compact('clip'));
     }
 
     /**
@@ -170,11 +170,11 @@ class BooksController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $book = $this->Books->get($id);
-        if ($this->Books->delete($book)) {
-            $this->Flash->success(__('The book has been deleted.'));
+        $clip = $this->Clips->get($id);
+        if ($this->Clips->delete($clip)) {
+            $this->Flash->success(__('The clip has been deleted.'));
         } else {
-            $this->Flash->error(__('The book could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The clip could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

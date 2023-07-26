@@ -1,14 +1,14 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\BookCollection $bookCollection
- * @var \Cake\Collection\CollectionInterface|string[] $libCollections
- * @var \Cake\Collection\CollectionInterface|string[] $books
- * @var int[] $libCollectionsLibCount
+ * @var \App\Model\Entity\ClipCollection $clipCollection
+ * @var \Cake\Collection\CollectionInterface|string[] $screenCollections
+ * @var \Cake\Collection\CollectionInterface|string[] $clips
+ * @var int[] $screenCollectionsLibCount
  */
 
 echo $this->Html->css([
-    'add_book_collection',
+    'add_clip_collection',
     'jquery-ui',
 ]);
 echo $this->Html->script([
@@ -16,7 +16,7 @@ echo $this->Html->script([
     'jquery-ui',
     '/plugins/jquery-validation/jquery.validate.1.19.3.min',
     'custom',
-    'add_book_collection',
+    'add_clip_collection',
 ]);
 ?>
 <div class="row">
@@ -27,17 +27,17 @@ echo $this->Html->script([
         </div>
     </aside>
     <div class="column-responsive column-80">
-        <div class="bookCollections form content">
-            <?= $this->Form->create($bookCollection, ['id' => 'add_book_collection_form', 'enctype' => 'multipart/form-data']) ?>
+        <div class="clipCollections form content">
+            <?= $this->Form->create($clipCollection, ['id' => 'add_clip_collection_form', 'enctype' => 'multipart/form-data']) ?>
             <fieldset>
                 <legend><?= __('Add Book Collection') ?></legend>
-                <ul class="step-app ui-accordion-container" id="add_book_collection_steps">
+                <ul class="step-app ui-accordion-container" id="add_clip_collection_steps">
                     <li id="step_1">
                         <a href='#' class="ui-accordion-link"></a>
                         <div>
                             <?php
                             echo $this->Form->control('name', ['class' => 'pageRequired']);
-                            echo $this->Form->control('lib_collection_id', ['class' => 'pageRequired', 'options' => $libCollections, 'empty' => 'Select One', 'required' => true]);
+                            echo $this->Form->control('screen_collection_id', ['class' => 'pageRequired', 'options' => $screenCollections, 'empty' => 'Select One', 'required' => true]);
                             echo $this->Form->button(__('Next'), ['class' => 'step_button', 'data-page-id' => '0', 'data-next-page-id' => '1', 'type' => 'button', 'data-step-action' => 'next']);
                             ?>
                         </div>
@@ -91,5 +91,5 @@ echo $this->Html->script([
 </div>
 <input type="hidden" id="no_image_src" value="/img/no_image.jpg"/>
 <script>
-    let libCountPerLib = <?php echo $libCollectionsLibCount ? json_encode($libCollectionsLibCount) : '{}'?>;
+    let libCountPerLib = <?php echo $screenCollectionsLibCount ? json_encode($screenCollectionsLibCount) : '{}'?>;
 </script>

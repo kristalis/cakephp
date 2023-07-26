@@ -27,7 +27,7 @@ use Cake\View\Exception\MissingTemplateException;
  *
  * This controller will render views from templates/Pages/
  *
- * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
+ * @link https://clip.cakephp.org/4/en/controllers/pages-controller.html
  */
 class PagesController extends AppController
 {
@@ -61,7 +61,7 @@ class PagesController extends AppController
         }
         $this->set(compact('page', 'subpage'));
 
-        $data = $this->fetchTable('LibCollections')->find('all')->contain(['BookCollections', 'BookCollections.Books', 'BookCollections.Books.BookImages']);
+        $data = $this->fetchTable('ScreenCollections')->find('all')->contain(['ClipCollections', 'ClipCollections.Clips', 'ClipCollections.Clips.ClipImages']);
 //dd($data->toArray());
         $this->set(compact('data'));
 

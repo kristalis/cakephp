@@ -9,12 +9,12 @@ use Cake\Validation\Validator;
 use Psr\Http\Message\UploadedFileInterface;
 
 /**
- * BookCollections Controller
+ * ClipCollections Controller
  *
- * @property \App\Model\Table\BookCollectionsTable $BookCollections
- * @method \App\Model\Entity\BookCollection[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @property \App\Model\Table\ClipCollectionsTable $ClipCollections
+ * @method \App\Model\Entity\ClipCollection[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class BookCollectionsController extends AppController
+class ClipCollectionsController extends AppController
 {
     /**
      * Index method
@@ -24,11 +24,11 @@ class BookCollectionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['LibCollections'],
+            'contain' => ['ScreenCollections'],
         ];
-        $bookCollections = $this->paginate($this->BookCollections);
+        $clipCollections = $this->paginate($this->ClipCollections);
 
-        $this->set(compact('bookCollections'));
+        $this->set(compact('clipCollections'));
     }
 
     /**
@@ -40,11 +40,11 @@ class BookCollectionsController extends AppController
      */
     public function view($id = null)
     {
-        $bookCollection = $this->BookCollections->get($id, [
-            'contain' => ['LibCollections', 'Books'],
+        $clipCollection = $this->ClipCollections->get($id, [
+            'contain' => ['ScreenCollections', 'Clips'],
         ]);
 
-        $this->set(compact('bookCollection'));
+        $this->set(compact('clipCollection'));
     }
 
     /**
@@ -59,7 +59,7 @@ class BookCollectionsController extends AppController
         $maxFileUploadSizeMB = intval(ini_get('upload_max_filesize'));
         $maxFileUploadSizeB = $maxFileUploadSizeMB*1024*1024;
 
-        $bookCollection = $this->BookCollections->newEmptyEntity();
+        $clipCollection = $this->ClipCollections->newEmptyEntity();
 
         if ($this->request->is('post')) {
 
@@ -115,26 +115,26 @@ class BookCollectionsController extends AppController
                 }
             }
             else{
-                $bookCollectionData = array_replace_recursive([
+                $clipCollectionData = array_replace_recursive([
                     'name' => null,
-                    'lib_collection_id' => null,
+                    'screen_collection_id' => null,
                     'start_date' => null,
                     'end_date' => null,
                 ], $this->request->getData());
 
-                $bookCollection = $this->BookCollections->patchEntity($bookCollection, $bookCollectionData);
+                $clipCollection = $this->ClipCollections->patchEntity($clipCollection, $clipCollectionData);
 
-                if ($this->BookCollections->save($bookCollection)) {
+                if ($this->ClipCollections->save($clipCollection)) {
 
-                    $theLib = $this->BookCollections->LibCollections->get($this->request->getData()['lib_collection_id']);
-                    $totalRequiredBooks = 0;
+                    $theLib = $this->ClipCollections->ScreenCollections->get($this->request->getData()['screen_collection_id']);
+                    $totalRequiredClips = 0;
                     if(!$theLib) $errors[] = __("No Lib Collection Selected");
-                    else $totalRequiredBooks = $theLib->lib_count;
+                    else $totalRequiredClips = $theLib->screen_count;
 
                     if(!$errors){
                         $imageFiles = $this->request->getData('image_file');
-                        if(count($imageFiles) != $totalRequiredBooks) $errors[] = __("Not enough images");
-                        if(count($videoFiles['video_files']) != $totalRequiredBooks) $errors[] = __("Not enough videos");
+                        if(count($imageFiles) != $totalRequiredClips) $errors[] = __("Not enough images");
+                        if(count($videoFiles['video_files']) != $totalRequiredClips) $errors[] = __("Not enough videos");
 
                         if(!$errors){
                             if($videoFiles['video_files']){
@@ -144,14 +144,14 @@ class BookCollectionsController extends AppController
                                     //echo 'looping '.$i.'<br/>';
                                     if($video->getSize() > 0 && $video->getError() == 0){
                                         //echo 'video '.$i.' no error<br/>';
-                                        $book = $this->fetchTable('Books')->newEmptyEntity();
+                                        $clip = $this->fetchTable('Clips')->newEmptyEntity();
                                         $pathInfo = pathinfo($video->getClientFilename());
-                                        $book['name'] = $pathInfo['filename'];
+                                        $clip['name'] = $pathInfo['filename'];
                                         $video_file_name = $pathInfo['filename'].'_'.time().'.'.$pathInfo['extension'];
-                                        $book['video'] = $video_file_name;
+                                        $clip['video'] = $video_file_name;
 
-                                        if($this->fetchTable('Books')->save($book)){
-                                            //echo 'book '.$i.' saved<br/>';
+                                        if($this->fetchTable('Clips')->save($clip)){
+                                            //echo 'clip '.$i.' saved<br/>';
                                             try {
                                                 $video->moveTo($targetPath.$video_file_name);
                                             } catch (\Exception $exception){
@@ -164,29 +164,29 @@ class BookCollectionsController extends AppController
                                                 $imgData = base64_decode($img[1]);
                                                 $imgFilename = $pathInfo['filename'].'_'.time().'.jpg';
 
-                                                $bookImage = $this->fetchTable('BookImages')->newEmptyEntity();
-                                                $bookImage['book_id'] = $book->id;
+                                                $bookImage = $this->fetchTable('ClipImages')->newEmptyEntity();
+                                                $bookImage['clip_id'] = $clip->id;
                                                 $bookImage['filename'] = $imgFilename;
 
-                                                if($this->fetchTable('BookImages')->save($bookImage)){
-                                                    //echo 'book image saved '.$i.'<br/>';
+                                                if($this->fetchTable('ClipImages')->save($bookImage)){
+                                                    //echo 'clip image saved '.$i.'<br/>';
                                                     if(file_put_contents($targetPath.$imgFilename, $imgData) === false)
-                                                        $errors[] = 'Could not save image file for book '.($i+1);
+                                                        $errors[] = 'Could not save image file for clip '.($i+1);
 
                                                     if(!$errors){
-                                                        $bookCollectionBooks = $this->fetchTable('BookCollectionsBooks')->newEmptyEntity();
-                                                        $bookCollectionBooks['book_collection_id'] = $bookCollection->id;
-                                                        $bookCollectionBooks['book_id'] = $book->id;
+                                                        $clipCollectionItems = $this->fetchTable('ClipCollectionsItems')->newEmptyEntity();
+                                                        $clipCollectionItems['clip_collection_id'] = $clipCollection->id;
+                                                        $clipCollectionItems['clip_id'] = $clip->id;
 
-                                                        if($this->fetchTable('BookCollectionsBooks')->save($bookCollectionBooks) === false){
-                                                            $errors[] = __("Could not store assign the book ".($i+1)." to the book collection");
+                                                        if($this->fetchTable('ClipCollectionsItems')->save($clipCollectionItems) === false){
+                                                            $errors[] = __("Could not store assign the clip ".($i+1)." to the clip collection");
                                                         }
                                                     }
                                                 }
-                                                else $errors[] = __("Could not save book image of book ".($i+1));
+                                                else $errors[] = __("Could not save clip image of clip ".($i+1));
                                             }
                                         }
-                                        else $errors[] = __("Could not save book ".($i+1));
+                                        else $errors[] = __("Could not save clip ".($i+1));
                                     }
                                     else $errors[] = __("Video ".($i+1).": error");
                                 }
@@ -194,7 +194,7 @@ class BookCollectionsController extends AppController
                         }
                     }
                 }
-                else $errors[] = __('Could not save the book collection');
+                else $errors[] = __('Could not save the clip collection');
             }
 
             if($errors) {
@@ -203,14 +203,14 @@ class BookCollectionsController extends AppController
             }
             else{
                 $connection->commit();
-                $this->Flash->success(__('The book collection has been saved.'));
+                $this->Flash->success(__('The clip collection has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
         }
-        $libCollections = $this->BookCollections->LibCollections->find('list', ['limit' => 200])->all();
-        $libCollectionsLibCount = $this->BookCollections->LibCollections->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'lib_count'])->all();
-        $books = $this->BookCollections->Books->find('list', ['limit' => 200])->all();
-        $this->set(compact('bookCollection', 'libCollections', 'books', 'libCollectionsLibCount'));
+        $screenCollections = $this->ClipCollections->ScreenCollections->find('list', ['limit' => 200])->all();
+        $screenCollectionsLibCount = $this->ClipCollections->ScreenCollections->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'screen_count'])->all();
+        $clips = $this->ClipCollections->Clips->find('list', ['limit' => 200])->all();
+        $this->set(compact('clipCollection', 'screenCollections', 'clips', 'screenCollectionsLibCount'));
     }
 
     /**
@@ -222,21 +222,21 @@ class BookCollectionsController extends AppController
      */
     public function edit($id = null)
     {
-        $bookCollection = $this->BookCollections->get($id, [
-            'contain' => ['Books'],
+        $clipCollection = $this->ClipCollections->get($id, [
+            'contain' => ['Clips'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $bookCollection = $this->BookCollections->patchEntity($bookCollection, $this->request->getData());
-            if ($this->BookCollections->save($bookCollection)) {
-                $this->Flash->success(__('The book collection has been saved.'));
+            $clipCollection = $this->ClipCollections->patchEntity($clipCollection, $this->request->getData());
+            if ($this->ClipCollections->save($clipCollection)) {
+                $this->Flash->success(__('The clip collection has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The book collection could not be saved. Please, try again.'));
+            $this->Flash->error(__('The clip collection could not be saved. Please, try again.'));
         }
-        $libCollections = $this->BookCollections->LibCollections->find('list', ['limit' => 200])->all();
-        $books = $this->BookCollections->Books->find('list', ['limit' => 200])->all();
-        $this->set(compact('bookCollection', 'libCollections', 'books'));
+        $screenCollections = $this->ClipCollections->ScreenCollections->find('list', ['limit' => 200])->all();
+        $clips = $this->ClipCollections->Clips->find('list', ['limit' => 200])->all();
+        $this->set(compact('clipCollection', 'screenCollections', 'clips'));
     }
 
     /**
@@ -249,11 +249,11 @@ class BookCollectionsController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $bookCollection = $this->BookCollections->get($id);
-        if ($this->BookCollections->delete($bookCollection)) {
-            $this->Flash->success(__('The book collection has been deleted.'));
+        $clipCollection = $this->ClipCollections->get($id);
+        if ($this->ClipCollections->delete($clipCollection)) {
+            $this->Flash->success(__('The clip collection has been deleted.'));
         } else {
-            $this->Flash->error(__('The book collection could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The clip collection could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

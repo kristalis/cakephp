@@ -6,9 +6,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * BookImagesFixture
+ * ClipImagesFixture
  */
-class BookImagesFixture extends TestFixture
+class ClipImagesFixture extends TestFixture
 {
     /**
      * Init method
@@ -20,7 +20,7 @@ class BookImagesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'book_id' => 1,
+                'clip_id' => 1,
                 'filename' => 'Lorem ipsum dolor sit amet',
                 'created_at' => 1688211290,
                 'updated_at' => 1688211290,

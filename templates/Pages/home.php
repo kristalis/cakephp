@@ -2,7 +2,7 @@
 echo $this->Html->css(['jquery-ui']);
 echo $this->Html->script(['jquery-3.6.0', 'jquery-ui']);
 
-/** @var iterable<\App\Model\Entity\LibCollection> $data */
+/** @var iterable<\App\Model\Entity\ScreenCollection> $data */
 
 ?>
 <div id="tabs">
@@ -23,7 +23,7 @@ echo $this->Html->script(['jquery-3.6.0', 'jquery-ui']);
                 <table>
                     <thead>
                     <tr>
-                        <th>Books</th>
+                        <th>Clips</th>
                         <th>Collection Name</th>
                         <th>Start Date</th>
                         <th>End Date</th>
@@ -31,25 +31,25 @@ echo $this->Html->script(['jquery-3.6.0', 'jquery-ui']);
                     </thead>
                     <tbody>
                     <?php
-                    foreach ($datum->book_collections as $book_collection){
+                    foreach ($datum->clip_collections as $clip_collection){
                         ?>
                         <tr>
                             <td>
                                 <?php
-                                foreach($book_collection->books as $book){
-                                    if($book->book_images){
-                                        $img = $book->book_images[0];
+                                foreach($clip_collection->clips as $clip){
+                                    if($clip->clip_images){
+                                        $img = $clip->clip_images[0];
                                         $img_src = $this->Url->build('/uploads/'.$img->filename);
                                         $img_tag = $this->Html->image('/uploads/'.$img->filename, ['fullBase' => true, 'style' => 'max-width: 50px;max-height:50px;']);
                                         echo $this->Html->link($img_tag, $img_src, ['target' => '_blank', 'escape' => false]);;
                                     }
-                                    //echo h($book->name)."<br />";
+                                    //echo h($clip->name)."<br />";
                                 }
                                 ?>
                             </td>
-                            <td><?= h($book_collection->name)?></td>
-                            <td><?= h($book_collection->start_date) ?></td>
-                            <td><?= h($book_collection->end_date) ?></td>
+                            <td><?= h($clip_collection->name)?></td>
+                            <td><?= h($clip_collection->start_date) ?></td>
+                            <td><?= h($clip_collection->end_date) ?></td>
                         </tr>
                         <?php
                     }

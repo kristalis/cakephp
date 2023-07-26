@@ -12,7 +12,7 @@ $(document).ready(function(){
 
     let noImgSrc = $('#no_image_src').val();
 
-    let theAccordion = $('#add_book_collection_steps').accordion({
+    let theAccordion = $('#add_clip_collection_steps').accordion({
         heightStyle: 'content'
     });
     let currentStep = 0;
@@ -29,7 +29,7 @@ $(document).ready(function(){
         return "dependency-mismatch";
     }, $.validator.messages.required)
 
-    let theFormValidator = $("#add_book_collection_form").validate({
+    let theFormValidator = $("#add_clip_collection_form").validate({
         errorClass: "validation_error",
         onkeyup: false,
         onfocusout: false,
@@ -56,7 +56,7 @@ $(document).ready(function(){
         }
 
         if(dataPageId === 0 && dataNextPageId === 1){
-            selectedLibId = $('#lib-collection-id').val();
+            selectedLibId = $('#screen-collection-id').val();
             libCountInSelectedLib = libCountPerLib[selectedLibId];
 
             let thisFind = [

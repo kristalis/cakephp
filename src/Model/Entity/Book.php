@@ -6,14 +6,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Book Entity
+ * Clip Entity
  *
  * @property int $id
  * @property string $name
  * @property \Cake\I18n\FrozenTime $created_at
  * @property \Cake\I18n\FrozenTime|null $updated_at
  */
-class Book extends Entity
+class Clip extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

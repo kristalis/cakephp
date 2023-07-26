@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\BookCollectionsBooksTable;
+use App\Model\Table\ClipCollectionsItemsTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\BookCollectionsBooksTable Test Case
+ * App\Model\Table\ClipCollectionsItemsTable Test Case
  */
-class BookCollectionsBooksTableTest extends TestCase
+class ClipCollectionsItemsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\BookCollectionsBooksTable
+     * @var \App\Model\Table\ClipCollectionsItemsTable
      */
-    protected $BookCollectionsBooks;
+    protected $ClipCollectionsItems;
 
     /**
      * Fixtures
@@ -24,9 +24,9 @@ class BookCollectionsBooksTableTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.BookCollectionsBooks',
-        'app.BookCollections',
-        'app.Books',
+        'app.ClipCollectionsItems',
+        'app.ClipCollections',
+        'app.Clips',
     ];
 
     /**
@@ -37,8 +37,8 @@ class BookCollectionsBooksTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('BookCollectionsBooks') ? [] : ['className' => BookCollectionsBooksTable::class];
-        $this->BookCollectionsBooks = $this->getTableLocator()->get('BookCollectionsBooks', $config);
+        $config = $this->getTableLocator()->exists('ClipCollectionsItems') ? [] : ['className' => ClipCollectionsItemsTable::class];
+        $this->ClipCollectionsItems = $this->getTableLocator()->get('ClipCollectionsItems', $config);
     }
 
     /**
@@ -48,7 +48,7 @@ class BookCollectionsBooksTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->BookCollectionsBooks);
+        unset($this->ClipCollectionsItems);
 
         parent::tearDown();
     }
@@ -57,7 +57,7 @@ class BookCollectionsBooksTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\BookCollectionsBooksTable::validationDefault()
+     * @uses \App\Model\Table\ClipCollectionsItemsTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
@@ -68,7 +68,7 @@ class BookCollectionsBooksTableTest extends TestCase
      * Test buildRules method
      *
      * @return void
-     * @uses \App\Model\Table\BookCollectionsBooksTable::buildRules()
+     * @uses \App\Model\Table\ClipCollectionsItemsTable::buildRules()
      */
     public function testBuildRules(): void
     {

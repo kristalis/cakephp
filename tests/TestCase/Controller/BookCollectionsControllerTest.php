@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\BookCollectionsController;
+use App\Controller\ClipCollectionsController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\BookCollectionsController Test Case
+ * App\Controller\ClipCollectionsController Test Case
  *
- * @uses \App\Controller\BookCollectionsController
+ * @uses \App\Controller\ClipCollectionsController
  */
-class BookCollectionsControllerTest extends TestCase
+class ClipCollectionsControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,17 +22,17 @@ class BookCollectionsControllerTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.BookCollections',
-        'app.LibCollections',
-        'app.Books',
-        'app.BookCollectionsBooks',
+        'app.ClipCollections',
+        'app.ScreenCollections',
+        'app.Clips',
+        'app.ClipCollectionsItems',
     ];
 
     /**
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\BookCollectionsController::index()
+     * @uses \App\Controller\ClipCollectionsController::index()
      */
     public function testIndex(): void
     {
@@ -43,7 +43,7 @@ class BookCollectionsControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\BookCollectionsController::view()
+     * @uses \App\Controller\ClipCollectionsController::view()
      */
     public function testView(): void
     {
@@ -54,7 +54,7 @@ class BookCollectionsControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\BookCollectionsController::add()
+     * @uses \App\Controller\ClipCollectionsController::add()
      */
     public function testAdd(): void
     {
@@ -65,7 +65,7 @@ class BookCollectionsControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\BookCollectionsController::edit()
+     * @uses \App\Controller\ClipCollectionsController::edit()
      */
     public function testEdit(): void
     {
@@ -76,7 +76,7 @@ class BookCollectionsControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\BookCollectionsController::delete()
+     * @uses \App\Controller\ClipCollectionsController::delete()
      */
     public function testDelete(): void
     {

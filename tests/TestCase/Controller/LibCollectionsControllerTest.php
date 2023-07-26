@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\LibCollectionsController;
+use App\Controller\ScreenCollectionsController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\LibCollectionsController Test Case
+ * App\Controller\ScreenCollectionsController Test Case
  *
- * @uses \App\Controller\LibCollectionsController
+ * @uses \App\Controller\ScreenCollectionsController
  */
-class LibCollectionsControllerTest extends TestCase
+class ScreenCollectionsControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,15 +22,15 @@ class LibCollectionsControllerTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.LibCollections',
-        'app.BookCollections',
+        'app.ScreenCollections',
+        'app.ClipCollections',
     ];
 
     /**
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\LibCollectionsController::index()
+     * @uses \App\Controller\ScreenCollectionsController::index()
      */
     public function testIndex(): void
     {
@@ -41,7 +41,7 @@ class LibCollectionsControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\LibCollectionsController::view()
+     * @uses \App\Controller\ScreenCollectionsController::view()
      */
     public function testView(): void
     {
@@ -52,7 +52,7 @@ class LibCollectionsControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\LibCollectionsController::add()
+     * @uses \App\Controller\ScreenCollectionsController::add()
      */
     public function testAdd(): void
     {
@@ -63,7 +63,7 @@ class LibCollectionsControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\LibCollectionsController::edit()
+     * @uses \App\Controller\ScreenCollectionsController::edit()
      */
     public function testEdit(): void
     {
@@ -74,7 +74,7 @@ class LibCollectionsControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\LibCollectionsController::delete()
+     * @uses \App\Controller\ScreenCollectionsController::delete()
      */
     public function testDelete(): void
     {

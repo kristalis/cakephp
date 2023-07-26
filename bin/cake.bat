@@ -18,9 +18,9 @@
 @echo off
 
 SET app=%0
-SET lib=%~dp0
+SET screen=%~dp0
 
-php "%lib%cake.php" %*
+php "%screen%cake.php" %*
 
 echo.
 

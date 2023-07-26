@@ -144,7 +144,7 @@ if (!$fullBaseUrl) {
      * you can enable `$trustProxy` to rely on the `X-Forwarded-Proto`
      * header to determine whether to generate URLs using `https`.
      *
-     * See also https://book.cakephp.org/4/en/controllers/request-response.html#trusting-proxy-headers
+     * See also https://clip.cakephp.org/4/en/controllers/request-response.html#trusting-proxy-headers
      */
     $trustProxy = false;
 
@@ -191,7 +191,7 @@ ServerRequest::addDetector('tablet', function ($request) {
  * You can enable default locale format parsing by adding calls
  * to `useLocaleParser()`. This enables the automatic conversion of
  * locale specific date formats. For details see
- * @link https://book.cakephp.org/4/en/core-libraries/internationalization-and-localization.html#parsing-localized-datetime-data
+ * @link https://clip.cakephp.org/4/en/core-libraries/internationalization-and-localization.html#parsing-localized-datetime-data
  */
 // \Cake\Database\TypeFactory::build('time')
 //    ->useLocaleParser();

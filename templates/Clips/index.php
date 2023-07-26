@@ -1,12 +1,12 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var iterable<\App\Model\Entity\Book> $books
+ * @var iterable<\App\Model\Entity\Book> $clips
  */
 ?>
-<div class="books index content">
+<div class="clips index content">
     <?= $this->Html->link(__('New Book'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Books') ?></h3>
+    <h3><?= __('Clips') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
@@ -19,16 +19,16 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($books as $book): ?>
+                <?php foreach ($clips as $clip): ?>
                 <tr>
-                    <td><?= $this->Number->format($book->id) ?></td>
-                    <td><?= h($book->name) ?></td>
-                    <td><?= h($book->created_at) ?></td>
-                    <td><?= h($book->updated_at) ?></td>
+                    <td><?= $this->Number->format($clip->id) ?></td>
+                    <td><?= h($clip->name) ?></td>
+                    <td><?= h($clip->created_at) ?></td>
+                    <td><?= h($clip->updated_at) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $book->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $book->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $book->id], ['confirm' => __('Are you sure you want to delete # {0}?', $book->id)]) ?>
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $clip->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $clip->id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $clip->id], ['confirm' => __('Are you sure you want to delete # {0}?', $clip->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

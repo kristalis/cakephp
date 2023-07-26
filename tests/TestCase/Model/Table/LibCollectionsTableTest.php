@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\LibCollectionsTable;
+use App\Model\Table\ScreenCollectionsTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\LibCollectionsTable Test Case
+ * App\Model\Table\ScreenCollectionsTable Test Case
  */
-class LibCollectionsTableTest extends TestCase
+class ScreenCollectionsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\LibCollectionsTable
+     * @var \App\Model\Table\ScreenCollectionsTable
      */
-    protected $LibCollections;
+    protected $ScreenCollections;
 
     /**
      * Fixtures
@@ -24,8 +24,8 @@ class LibCollectionsTableTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.LibCollections',
-        'app.BookCollections',
+        'app.ScreenCollections',
+        'app.ClipCollections',
     ];
 
     /**
@@ -36,8 +36,8 @@ class LibCollectionsTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('LibCollections') ? [] : ['className' => LibCollectionsTable::class];
-        $this->LibCollections = $this->getTableLocator()->get('LibCollections', $config);
+        $config = $this->getTableLocator()->exists('ScreenCollections') ? [] : ['className' => ScreenCollectionsTable::class];
+        $this->ScreenCollections = $this->getTableLocator()->get('ScreenCollections', $config);
     }
 
     /**
@@ -47,7 +47,7 @@ class LibCollectionsTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->LibCollections);
+        unset($this->ScreenCollections);
 
         parent::tearDown();
     }
@@ -56,7 +56,7 @@ class LibCollectionsTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\LibCollectionsTable::validationDefault()
+     * @uses \App\Model\Table\ScreenCollectionsTable::validationDefault()
      */
     public function testValidationDefault(): void
     {

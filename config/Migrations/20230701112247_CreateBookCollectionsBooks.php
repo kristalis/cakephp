@@ -3,23 +3,23 @@ declare(strict_types=1);
 
 use Migrations\AbstractMigration;
 
-class CreateBookCollectionsBooks extends AbstractMigration
+class CreateClipCollectionsItems extends AbstractMigration
 {
     /**
      * Change Method.
      *
      * More information on this method is available here:
-     * https://book.cakephp.org/phinx/0/en/migrations.html#the-change-method
+     * https://clip.cakephp.org/phinx/0/en/migrations.html#the-change-method
      * @return void
      */
     public function change(): void
     {
-        $table = $this->table('book_collections_books');
+        $table = $this->table('clip_collections_items');
         $table->addPrimaryKey('id');
-        $table->addColumn('book_collection_id', 'integer', ['null' => true]);
-        $table->addForeignKey('book_collection_id', 'book_collections', ['id'], ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION']);
-        $table->addColumn('book_id', 'integer', ['null' => true]);
-        $table->addForeignKey('book_id', 'books', ['id'], ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION']);
+        $table->addColumn('clip_collection_id', 'integer', ['null' => true]);
+        $table->addForeignKey('clip_collection_id', 'clip_collections', ['id'], ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION']);
+        $table->addColumn('clip_id', 'integer', ['null' => true]);
+        $table->addForeignKey('clip_id', 'clips', ['id'], ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION']);
         $table->addTimestamps();
         $table->create();
     }

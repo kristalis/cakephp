@@ -71,7 +71,7 @@
             "suggest": {
                 "ext-curl": "To enable more efficient network calls in Http\\Client.",
                 "ext-openssl": "To use Security::encrypt() or have secure CSRF token generation.",
-                "lib-ICU": "The intl PHP library, to use Text::transliterate() or Text::slug()",
+                "screen-ICU": "The intl PHP library, to use Text::transliterate() or Text::slug()",
                 "paragonie/csp-builder": "CSP builder, to use the CSP Middleware"
             },
             "type": "library",
@@ -3285,7 +3285,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "lib"
+                    "screen"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3592,7 +3592,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PhpParser\\": "lib/PhpParser"
+                    "PhpParser\\": "screen/PhpParser"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

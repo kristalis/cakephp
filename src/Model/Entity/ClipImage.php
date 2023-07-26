@@ -6,18 +6,17 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * BookCollectionsBook Entity
+ * ClipImage Entity
  *
  * @property int $id
- * @property int|null $book_collection_id
- * @property int|null $book_id
+ * @property int|null $clip_id
+ * @property string $filename
  * @property \Cake\I18n\FrozenTime $created_at
  * @property \Cake\I18n\FrozenTime|null $updated_at
  *
- * @property \App\Model\Entity\BookCollection $book_collection
- * @property \App\Model\Entity\Book $book
+ * @property \App\Model\Entity\Book $clip
  */
-class BookCollectionsBook extends Entity
+class ClipImage extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -29,11 +28,10 @@ class BookCollectionsBook extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'book_collection_id' => true,
-        'book_id' => true,
+        'clip_id' => true,
+        'filename' => true,
         'created_at' => true,
         'updated_at' => true,
-        'book_collection' => true,
-        'book' => true,
+        'clip' => true,
     ];
 }

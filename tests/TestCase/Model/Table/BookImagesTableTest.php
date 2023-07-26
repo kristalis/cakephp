@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\BookImagesTable;
+use App\Model\Table\ClipImagesTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\BookImagesTable Test Case
+ * App\Model\Table\ClipImagesTable Test Case
  */
-class BookImagesTableTest extends TestCase
+class ClipImagesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\BookImagesTable
+     * @var \App\Model\Table\ClipImagesTable
      */
-    protected $BookImages;
+    protected $ClipImages;
 
     /**
      * Fixtures
@@ -24,8 +24,8 @@ class BookImagesTableTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.BookImages',
-        'app.Books',
+        'app.ClipImages',
+        'app.Clips',
     ];
 
     /**
@@ -36,8 +36,8 @@ class BookImagesTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('BookImages') ? [] : ['className' => BookImagesTable::class];
-        $this->BookImages = $this->getTableLocator()->get('BookImages', $config);
+        $config = $this->getTableLocator()->exists('ClipImages') ? [] : ['className' => ClipImagesTable::class];
+        $this->ClipImages = $this->getTableLocator()->get('ClipImages', $config);
     }
 
     /**
@@ -47,7 +47,7 @@ class BookImagesTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->BookImages);
+        unset($this->ClipImages);
 
         parent::tearDown();
     }
@@ -56,7 +56,7 @@ class BookImagesTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\BookImagesTable::validationDefault()
+     * @uses \App\Model\Table\ClipImagesTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
@@ -67,7 +67,7 @@ class BookImagesTableTest extends TestCase
      * Test buildRules method
      *
      * @return void
-     * @uses \App\Model\Table\BookImagesTable::buildRules()
+     * @uses \App\Model\Table\ClipImagesTable::buildRules()
      */
     public function testBuildRules(): void
     {

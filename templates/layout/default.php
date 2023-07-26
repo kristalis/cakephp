@@ -41,9 +41,9 @@ $cakeDescription = 'Ko';
             <a href="<?= $this->Url->build('/') ?>"><span>KOFI</span> Test Project</a>
         </div>
         <div class="top-nav-links">
-            <a href="<?= $this->Url->build('/lib-collections')?>">Lib Collections</a>
-            <a href="<?= $this->Url->build('/books')?>">Books</a>
-            <a href="<?= $this->Url->build('/book-collections')?>">Book Collections</a>
+            <a href="<?= $this->Url->build('/screen-collections')?>">Lib Collections</a>
+            <a href="<?= $this->Url->build('/clips')?>">Clips</a>
+            <a href="<?= $this->Url->build('/clip-collections')?>">Book Collections</a>
         </div>
     </nav>
     <main class="main">

@@ -6,9 +6,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * BookCollectionsFixture
+ * ClipCollectionsFixture
  */
-class BookCollectionsFixture extends TestFixture
+class ClipCollectionsFixture extends TestFixture
 {
     /**
      * Init method
@@ -21,7 +21,7 @@ class BookCollectionsFixture extends TestFixture
             [
                 'id' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
-                'lib_collection_id' => 1,
+                'screen_collection_id' => 1,
                 'start_date' => '2023-07-01',
                 'end_date' => '2023-07-01',
                 'created_at' => 1688211240,
