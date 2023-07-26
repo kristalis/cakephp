@@ -208,9 +208,9 @@ class ClipCollectionsController extends AppController
             }
         }
         $screenCollections = $this->ClipCollections->ScreenCollections->find('list', ['limit' => 200])->all();
-        $screenCollectionsLibCount = $this->ClipCollections->ScreenCollections->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'screen_count'])->all();
+        $screenCollectionsScreenCount = $this->ClipCollections->ScreenCollections->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'screen_count'])->all();
         $clips = $this->ClipCollections->Clips->find('list', ['limit' => 200])->all();
-        $this->set(compact('clipCollection', 'screenCollections', 'clips', 'screenCollectionsLibCount'));
+        $this->set(compact('clipCollection', 'screenCollections', 'clips', 'screenCollectionsScreenCount'));
     }
 
     /**

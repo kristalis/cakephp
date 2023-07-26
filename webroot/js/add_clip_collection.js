@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    let selectedLibId = null;
-    let libCountInSelectedLib = null;
+    let selectedScreenId = null;
+    let screenCountInSelectedScreen = null;
 
     let imageContainer = $('#image_container .row');
     let videoContainer = $('#video_container');
@@ -56,8 +56,8 @@ $(document).ready(function(){
         }
 
         if(dataPageId === 0 && dataNextPageId === 1){
-            selectedLibId = $('#screen-collection-id').val();
-            libCountInSelectedLib = libCountPerLib[selectedLibId];
+            selectedScreenId = $('#screen-collection-id').val();
+            screenCountInSelectedScreen = screenCountPerScreen[selectedScreenId];
 
             let thisFind = [
                 'video_name_placeholder',
@@ -70,11 +70,11 @@ $(document).ready(function(){
             let currentNumberOfInputs = fileUploadContainer.find('.each_file').length;
 
             if(currentNumberOfInputs){
-                if(currentNumberOfInputs > libCountInSelectedLib){
+                if(currentNumberOfInputs > screenCountInSelectedScreen){
                     let allFileInputContainer = fileUploadContainer.find('.each_file');
                     let allImageTagContainer = imageContainer.find('.each_image');
                     let allVideoTagContainer = videoContainer.find('.each_video');
-                    for(let i = currentNumberOfInputs - 1; i > libCountInSelectedLib - 1; i--){
+                    for(let i = currentNumberOfInputs - 1; i > screenCountInSelectedScreen - 1; i--){
                         allFileInputContainer[i].remove();
                         allImageTagContainer[i].remove();
                         allVideoTagContainer[i].remove();
@@ -84,7 +84,7 @@ $(document).ready(function(){
                     if(!$('.each_file.active').length) $('.each_file').eq(0).addClass('active');
                 }
                 else{
-                    for(let i = currentNumberOfInputs; i < libCountInSelectedLib; i++){
+                    for(let i = currentNumberOfInputs; i < screenCountInSelectedScreen; i++){
                         imageContainer.append(eachImgTagHtml.replace('image_tag_id_placeholder', 'image_tag_'+i));
                         videoContainer.append(eachVideoTagHtml.replace('video_tag_id_placeholder', 'video_tag_'+i));
 
@@ -100,7 +100,7 @@ $(document).ready(function(){
                 }
             }
             else{
-                for(let i = 0; i < libCountInSelectedLib; i++){
+                for(let i = 0; i < screenCountInSelectedScreen; i++){
                     imageContainer.append(eachImgTagHtml.replace('image_tag_id_placeholder', 'image_tag_'+i));
                     videoContainer.append(eachVideoTagHtml.replace('video_tag_id_placeholder', 'video_tag_'+i));
 

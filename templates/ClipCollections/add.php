@@ -91,5 +91,5 @@ echo $this->Html->script([
 </div>
 <input type="hidden" id="no_image_src" value="/img/no_image.jpg"/>
 <script>
-    let libCountPerLib = <?php echo $screenCollectionsLibCount ? json_encode($screenCollectionsLibCount) : '{}'?>;
+    let screenCountPerScreen = <?php echo $screenCollectionsScreenCount ? json_encode($screenCollectionsScreenCount) : '{}'?>;
 </script>
