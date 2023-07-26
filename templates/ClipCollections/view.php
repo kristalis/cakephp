@@ -8,10 +8,10 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Book Collection'), ['action' => 'edit', $clipCollection->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Book Collection'), ['action' => 'delete', $clipCollection->id], ['confirm' => __('Are you sure you want to delete # {0}?', $clipCollection->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Book Collections'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Book Collection'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Edit Clip Collection'), ['action' => 'edit', $clipCollection->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Delete Clip Collection'), ['action' => 'delete', $clipCollection->id], ['confirm' => __('Are you sure you want to delete # {0}?', $clipCollection->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List Clip Collections'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('New Clip Collection'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">

@@ -23,14 +23,14 @@ echo $this->Html->script([
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Book Collections'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List Clip Collections'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="clipCollections form content">
             <?= $this->Form->create($clipCollection, ['id' => 'add_clip_collection_form', 'enctype' => 'multipart/form-data']) ?>
             <fieldset>
-                <legend><?= __('Add Book Collection') ?></legend>
+                <legend><?= __('Add Clip Collection') ?></legend>
                 <ul class="step-app ui-accordion-container" id="add_clip_collection_steps">
                     <li id="step_1">
                         <a href='#' class="ui-accordion-link"></a>

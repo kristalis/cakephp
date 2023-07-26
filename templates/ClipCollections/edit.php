@@ -15,14 +15,14 @@
                 ['action' => 'delete', $clipCollection->id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $clipCollection->id), 'class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(__('List Book Collections'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List Clip Collections'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="clipCollections form content">
             <?= $this->Form->create($clipCollection) ?>
             <fieldset>
-                <legend><?= __('Edit Book Collection') ?></legend>
+                <legend><?= __('Edit Clip Collection') ?></legend>
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('screen_collection_id', ['options' => $screenCollections, 'empty' => 'Select One', 'required' => true]);

@@ -5,8 +5,8 @@
  */
 ?>
 <div class="clipCollections index content">
-    <?= $this->Html->link(__('New Book Collection'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Book Collections') ?></h3>
+    <?= $this->Html->link(__('New Clip Collection'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <h3><?= __('Clip Collections') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>

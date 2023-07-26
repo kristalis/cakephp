@@ -38,12 +38,12 @@ $cakeDescription = 'Ko';
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>KOFI</span> Test Project</a>
+            <a href="<?= $this->Url->build('/') ?>"><span>CakePHP</span> Tutorials</a>
         </div>
         <div class="top-nav-links">
-            <a href="<?= $this->Url->build('/screen-collections')?>">Lib Collections</a>
-            <a href="<?= $this->Url->build('/clips')?>">Clips</a>
-            <a href="<?= $this->Url->build('/clip-collections')?>">Book Collections</a>
+            <!-- <a href="<= $this->Url->build('/screen-collections')?>">Lib Collections</a>
+            <a href="<= $this->Url->build('/clips')?>">Clips</a> -->
+            <a href="<?= $this->Url->build('/clip-collections')?>">Clip Collections</a>
         </div>
     </nav>
     <main class="main">
